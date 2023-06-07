@@ -13,7 +13,7 @@ static char map[rows][columns + 1] = {
         "     v;v;;;;;;i;;;;;;v;v     ",
         "     v;v;ahhhh2hhhhb;v;v     ",
         "hhhhhd;v;v    2    v;v;chhhhh",
-        ";;;;;;;;;v    2    v;;;;;;;;;",
+        " ;;;;;;;;v    2    v;;;;;;;; ",
         "hhhhhb;v;v    2    v;v;ahhhhh",
         "     v;v;chhhhhhhhhd;v;v     ",
         "     v;v;;;;;;;;;;;;;v;v     ",

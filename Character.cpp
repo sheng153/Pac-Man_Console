@@ -77,10 +77,6 @@ void Character::SetPosition( COORD position )
 void Character::Move( COORD dir )
 {
 	this -> Clean();
-	
-	COORD output;
-	output.X = 30;
-	output.Y = 1;
 
 	COORD newPos;
 	newPos.X = 0;
@@ -88,10 +84,6 @@ void Character::Move( COORD dir )
 
 	newPos.X = GetPosition().X + dir.X;
 	newPos.Y = GetPosition().Y + dir.Y;
-	
-
-	SetConsoleCursorPosition( GetHandle(), output );
-	std::cout << newPos.X << "  " << newPos.Y;
 
 	SetPosition( newPos );
 	Paint( ); 

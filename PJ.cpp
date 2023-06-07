@@ -3,7 +3,8 @@
 PJ::PJ(int col, COORD fixedPosition, int character, HANDLE handle ) : Character( col, fixedPosition, character, handle )
 {
 
-        SetPoints(0);
+        points = 0;
+        count = 4;
         
         SetLives(3);
         SetGameState(0);

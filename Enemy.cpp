@@ -2,7 +2,8 @@
 
 Enemy::Enemy( int col, COORD fixedPosition, int symbol, HANDLE handle ) : Character( col, fixedPosition, symbol, handle )
 {
-
+        xy = x;
+        SetPrevChar(' ');
 }
 
 void Enemy::SetTimer()
@@ -20,10 +21,13 @@ bool Enemy::CanMoveTo(COORD direction, int space){
 
         ReadConsoleOutputCharacter(GetHandle(), &output, 1, direction, &count);
 
-        if (output == char(250) || output == char(79) || output == ' ' || output == char(GetChar())) {
+        if (output == char(250) || output == char(79) || output == ' ') {
+                SetPrevChar(output);
                 return true;
         }
-        SetXY();
+        if (output == char(GetChar())) {
+                return true;
+        }
         return false;
 
 }
@@ -37,21 +41,28 @@ COORD Enemy::SetInput() {
 
         switch (GetInput()) {
                 case x:
-                        input.Y = rand() - 2 % 2;
+                        input.Y = (rand() % 2 == 0) ? -1 : 1;
                         return input;
                 case y:
-                        input.X = rand() - 2 % 2;
+                        input.X = (rand() % 2 == 0) ? -1 : 1;
                         return input;
         }
 }
 
 void Enemy::Clean(){
 
+        SetConsoleCursorPosition(GetHandle(), GetPosition());
+
+        std::cout << GetPrevChar();
+}
+
+void Enemy::SetPrevChar(char prevChar) {
+        this -> prevChar = prevChar;
 }
 
 void Enemy::SetXY() {
         switch (xy) {
-                case x:
+        case x:
                 xy = y;
                 break;
         case y:

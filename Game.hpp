@@ -122,11 +122,15 @@ class Enemy : public Character
                 void SetXY();
 
                 void SetState( short );
+                void SetPrevChar(char);
 
                 COORD SetInput();
 
                 bool CanMoveTo(COORD, int);
 
+                char GetPrevChar() {
+                        return prevChar;
+                };
                 input GetInput() {
                         return xy;
                 };
@@ -146,6 +150,8 @@ class Enemy : public Character
                 bool activeTimer;
 
                 input xy;
+
+                char prevChar;
 
                 void Clean();
 };

@@ -55,35 +55,44 @@ void GameLoop()
 {
 
         COORD input = Input();
+        COORD winPos;
+        winPos.X = rightLimit + 3;
+        winPos.Y = downLimit / 2;
 
         if (pacman->CanMoveTo(input)) {
                 pacman->Move(input);
         }
 
+        
         for (int i = 0; i < ghosts.size(); i++) {
-                COORD direction = ghosts[i].SetInput();
-                if (ghosts[i].CanMoveTo(direction, 1)) {
-                    ghosts[i].Move(direction);
+                if (ghosts[i].CanMoveTo(ghosts[i].GetDirection(), 1)) {
+                        ghosts[i].Move(ghosts[i].GetDirection());
+                }
+                else {
+                        ghosts[i].SetXY();
+                        ghosts[i].SetDirection(ghosts[i].SetInput());
+                        GameLoop();
                 }
         }
-
+        
         pacman->PrintLives();
         pacman->PrintPoints();
 
         //std::this_thread::sleep_for(std::chrono::milliseconds(sleepFor));
-        if (pacman->GetCount() < 290) {
-                std::cout << GetCount();
+        if (pacman->GetCount() < 290){
                 GameLoop();
         }
-        else {
-            std::cout << "You won!!";
-        }
+        
+
+        SetConsoleCursorPosition(pacman->GetHandle(), winPos);
+        std::cout << "You won!!";
+        
 }
 
 void LimitValues(int &change, int min = leftLimit, int max = rightLimit)
 {
-        if (change < min) {
-                change = max - 1;
+        if (change <= min) {
+                change = max;
         }
         else if (change > max) {
                 change = min;
@@ -92,7 +101,7 @@ void LimitValues(int &change, int min = leftLimit, int max = rightLimit)
 
 void LimitValues(float& change, float min = leftLimit, float max = rightLimit)
 {
-        if (change < min) {
+        if (change <= min) {
                 change = max - 1;
         }
         else if (change > max) {
@@ -102,7 +111,7 @@ void LimitValues(float& change, float min = leftLimit, float max = rightLimit)
 
 void LimitValues(SHORT& change, int min = leftLimit, int max = rightLimit)
 {
-        if (change < min) {
+        if (change <= min) {
                 change = max - 1;
         }
         else if (change > max) {
