@@ -5,21 +5,21 @@
 
 class Board
 {
-        public:
+public:
 
-                Board( HANDLE &handle );
+        Board ( HANDLE &handle );
 
-                void MapSwitch( HANDLE handle, char map );
+        void MapSwitch ( HANDLE handle, char map );
 
-                void PaintBoard( HANDLE handle, char maps[][columns + 1], int thisRows, int thisColumns );
+        void PaintBoard ( HANDLE handle, char maps[ ][ columns + 1 ], int thisRows, int thisColumns );
 
-                bool IsWall( char next );
+        bool IsWall ( char next );
 
-                void Points( HANDLE handle, PJ pacman );
+        void Points ( HANDLE handle, PJ pacman );
 
-                HANDLE Start();
-                void PrintBoard();
-                void Restart( Character *charArray, COORD *positions );
+        HANDLE Start ( );
+        void PrintBoard ( );
+        void Restart ( Character *charArray, COORD *positions );
 
 };
 #endif

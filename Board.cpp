@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-static char map[rows][columns + 1] = {
+static char map[ rows ][ columns + 1 ] = {
         "ahhhhhhhhhhhhhnhhhhhhhhhhhhhb",
         "v@;;;;;;;;;;;;v;;;;;;;;;;;;@v",
         "v;ahhb;ahhhhb;v;ahhhhb;ahhb;v",
@@ -11,7 +11,7 @@ static char map[rows][columns + 1] = {
         "v;;;;;;v;;;;;;v;;;;;;v;;;;;;v",
         "chhhhb;phhhhh;v;hhhhho;ahhhhd",
         "     v;v;;;;;;i;;;;;;v;v     ",
-        "     v;v;ahhhh2hhhhb;v;v     ",
+        "     v;v;a2hhh2hhh2b;v;v     ",
         "hhhhhd;v;v    2    v;v;chhhhh",
         " ;;;;;;;;v    2    v;;;;;;;; ",
         "hhhhhb;v;v    2    v;v;ahhhhh",
@@ -28,118 +28,118 @@ static char map[rows][columns + 1] = {
         "chhhhhhhhhhhhhhhhhhhhhhhhhhhd"
 };
 
-short movement[rows][columns];
+short movement[ rows ][ columns ];
 
-Board::Board( HANDLE &handle )
+Board::Board ( HANDLE &handle )
 {
-        handle = this -> Start();
+        handle = this->Start ( );
 }
 
-void Board::PaintBoard( HANDLE handle, char maps[][columns + 1], int thisRows, int thisColumns )
+void Board::PaintBoard ( HANDLE handle, char maps[ ][ columns + 1 ], int thisRows, int thisColumns )
 {
         COORD position;
         for(int y = 0; y < rows; y++) {
                 for(int x = 0; x < columns; x++) {
-                        SetConsoleTextAttribute( handle, wall );
+                        SetConsoleTextAttribute ( handle, wall );
                         position.X = x;
                         position.Y = y;
-                        SetConsoleCursorPosition( handle, position );
+                        SetConsoleCursorPosition ( handle, position );
 
-                        MapSwitch( handle, maps[y][x] );
+                        MapSwitch ( handle, maps[ y ][ x ] );
                 }
         }
 }
 
-bool Board::IsWall(char next)
+bool Board::IsWall ( char next )
 {
         switch(next) {
-                case 'p':
-                        return true;
-                        break;
+        case 'p':
+                return true;
+                break;
         }
         return false;
 }
 
 
 
-void Board::Points(HANDLE handle, PJ pacman)
+void Board::Points ( HANDLE handle, PJ pacman )
 {
         COORD pointsPos;
         pointsPos.X = rightLimit + 1;
         pointsPos.Y = upLimit - 1;
 
-        SetConsoleCursorPosition( handle, pointsPos );
-        SetConsoleTextAttribute( handle, pointsColor );
-        std::cout << "Points: " << pacman.GetPoints();
+        SetConsoleCursorPosition ( handle, pointsPos );
+        SetConsoleTextAttribute ( handle, pointsColor );
+        std::cout << "Points: " << pacman.GetPoints ( );
 }
 
-HANDLE Board::Start()
+HANDLE Board::Start ( )
 {
 
-        HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+        HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
 
-        PaintBoard( handle, map, rows, columns );
+        PaintBoard ( handle, map, rows, columns );
 
         return handle;
 }
 
-void Board::PrintBoard()
+void Board::PrintBoard ( )
 {
 
 }
 
-void Board::Restart(Character *charArray, COORD *positions)
+void Board::Restart ( Character *charArray, COORD *positions )
 {
 
-        for(int i = 0; i < sizeof(charArray)/sizeof(Character); i++) {
-                charArray[i].SetPosition(positions[i]);
+        for(int i = 0; i < sizeof ( charArray ) / sizeof ( Character ); i++) {
+                charArray[ i ].SetPosition ( positions[ i ] );
         }
 
 }
 
-void Board::MapSwitch( HANDLE handle, char map )
+void Board::MapSwitch ( HANDLE handle, char map )
 {
         switch(map) {
-                case 'v':
-                        std::cout << char(186);
-                        break;
-                case 'h':
-                        std::cout << char(205);
-                        break;
-                case 'm':
-                        std::cout << char(202);
-                        break;
-                case 'n':
-                        std::cout << char(203);
-                        break;
-                case 'o':
-                        std::cout << char(185);
-                        break;
-                case 'p':
-                        std::cout << char(204);
-                        break;
-                case 'a':
-                        std::cout << char(201);
-                        break;
-                case 'b':
-                        std::cout << char(187);
-                        break;
-                case 'c':
-                        std::cout << char(200);
-                        break;
-                case 'd':
-                        std::cout << char(188);
-                        break;
-                case ';':
-                        SetConsoleTextAttribute( handle, food );
-                        std::cout << char(250);
-                        break;
-                case '@':
-                        SetConsoleTextAttribute( handle, food );
-                        std::cout << char(79);
-                        break;
-                default:
-                        std::cout << ' ';
-                        break;
+        case 'v':
+                std::cout << char ( 186 );
+                break;
+        case 'h':
+                std::cout << char ( 205 );
+                break;
+        case 'm':
+                std::cout << char ( 202 );
+                break;
+        case 'n':
+                std::cout << char ( 203 );
+                break;
+        case 'o':
+                std::cout << char ( 185 );
+                break;
+        case 'p':
+                std::cout << char ( 204 );
+                break;
+        case 'a':
+                std::cout << char ( 201 );
+                break;
+        case 'b':
+                std::cout << char ( 187 );
+                break;
+        case 'c':
+                std::cout << char ( 200 );
+                break;
+        case 'd':
+                std::cout << char ( 188 );
+                break;
+        case ';':
+                SetConsoleTextAttribute ( handle, food );
+                std::cout << char ( 250 );
+                break;
+        case '@':
+                SetConsoleTextAttribute ( handle, food );
+                std::cout << char ( 79 );
+                break;
+        default:
+                std::cout << ' ';
+                break;
         }
 }

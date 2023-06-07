@@ -1,6 +1,8 @@
 #ifndef SomeFunctions_hpp
 #define SomeFunctions_hpp
 
+//g++ -o Pacman Main.cpp Board.cpp Character.cpp PJ.cpp Enemy.cpp
+
 #include <windows.h>
 #include <thread>
 #include <chrono>
@@ -34,11 +36,11 @@ enum Color {
 };
 
 enum Rotation {
-	right = 1,
-	down = 2,
-	left = 3,
-	up = 4,
-	error = 0
+        right = 1,
+        down = 2,
+        left = 3,
+        up = 4,
+        error = 0
 };
 
 enum input {
@@ -52,13 +54,13 @@ struct User {
         int points;
 };
 
-void LimitValues( int &, int, int );
-void LimitValues( float &, float, float );
-void LimitValues( SHORT&, int, int );
+void LimitValues ( int &, int, int );
+void LimitValues ( float &, float, float );
+void LimitValues ( SHORT &, int, int );
 
-void StartGame();
-void GameLoop();
+void StartGame ( );
+void GameLoop ( );
 
-COORD Input();
+COORD Input ( );
 
 #endif

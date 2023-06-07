@@ -11,148 +11,148 @@ class Enemy;
 
 class Character
 {
-        public:
-                Character( int, COORD, int, HANDLE );
+public:
+        Character ( int, COORD, int, HANDLE );
 
-                void SetChar( int );
-                void SetDirection( COORD );
-                void SetCharacterColor( int );
-                void SetName( std::string );
-				
-		void SetHandle( HANDLE );
-				
-                virtual bool CanMoveTo( COORD );
+        void SetChar ( int );
+        void SetDirection ( COORD );
+        void SetCharacterColor ( int );
+        void SetName ( std::string );
 
-                void SetPosition( COORD );
+        void SetHandle ( HANDLE );
 
-                void SetOutput(char);
+        virtual bool CanMoveTo ( COORD );
 
-                int GetChar()
-                {
-                        return character;
-                };
-                int GetColor()
-                {
-                        return color;
-                };
-                COORD GetPosition()
-                {
-                        return position;
-                };
-                COORD GetDirection(){
-                	return direction;	
-		};
-                std::string GetName()
-                {
-                        return name;
-                };
-                char GetOutput() {
-                        return output;
-                };
-                HANDLE GetHandle(){
-                        return handle;
-		};
+        void SetPosition ( COORD );
 
-                void Move( COORD );
-                virtual void Paint();
+        void SetOutput ( char );
 
-        private:
-                COORD position;
-                COORD direction;
-                int color;
-                int character;
-                std::string name;
-                
-                char output;
+        int GetChar ( )
+        {
+                return character;
+        };
+        int GetColor ( )
+        {
+                return color;
+        };
+        COORD GetPosition ( )
+        {
+                return position;
+        };
+        COORD GetDirection ( ) {
+                return direction;
+        };
+        std::string GetName ( )
+        {
+                return name;
+        };
+        char GetOutput ( ) {
+                return output;
+        };
+        HANDLE GetHandle ( ) {
+                return handle;
+        };
 
-                HANDLE handle;
-                
-                virtual void Clean();
+        void Move ( COORD );
+        virtual void Paint ( );
+
+private:
+        COORD position;
+        COORD direction;
+        int color;
+        int character;
+        std::string name;
+
+        char output;
+
+        HANDLE handle;
+
+        virtual void Clean ( );
 };
 
 class PJ : public Character
 {
-        public:
-                PJ( int, COORD, int, HANDLE );
+public:
+        PJ ( int, COORD, int, HANDLE );
 
-                void SetPoints( int );
-                void SetLives( int );
-                void SetGameState( short );
-                void PrintLives(  );
-                void PrintPoints();
+        void SetPoints ( int );
+        void SetLives ( int );
+        void SetGameState ( short );
+        void PrintLives ( );
+        void PrintPoints ( );
 
-                void SetCount();
+        void SetCount ( );
 
-                bool CanMoveTo(COORD);
+        bool CanMoveTo ( COORD );
 
-                void EatPowerPellets();
-                bool Collission(Enemy *, short &, Enemy * []);
+        void EatPowerPellets ( );
+        bool Collission ( Enemy *, short &, Enemy *[ ] );
 
-                int GetPoints()
-                {
-                        return points;
-                };
-                int GetLives()
-                {
-                        return lives;
-                };
-                bool GetGameState()
-                {
-                        return gameState;
-                };
-                int GetCount() {
-                        return count;
-                };
+        int GetPoints ( )
+        {
+                return points;
+        };
+        int GetLives ( )
+        {
+                return lives;
+        };
+        bool GetGameState ( )
+        {
+                return gameState;
+        };
+        int GetCount ( ) {
+                return count;
+        };
 
-        private:
-                int points;
-                int count;
-                int lives;
-                short gameState;
+private:
+        int points;
+        int count;
+        int lives;
+        short gameState;
 };
 
 class Enemy : public Character
 {
-        public:
+public:
 
-                Enemy( int, COORD, int, HANDLE );
+        Enemy ( int, COORD, int, HANDLE );
 
-                void SetTimer();
+        void SetTimer ( );
 
-                void SetXY();
+        void SetXY ( );
 
-                void SetState( short );
-                void SetPrevChar(char);
+        void SetState ( short );
+        void SetPrevChar ( char );
 
-                COORD SetInput();
+        COORD SetInput ( );
 
-                bool CanMoveTo(COORD, int);
+        bool CanMoveTo ( COORD, int );
 
-                char GetPrevChar() {
-                        return prevChar;
-                };
-                input GetInput() {
-                        return xy;
-                };
-                short GetState()
-                {
-                        return state;
-                };
-                int GetTimer()
-                {
-                        return timer;
-                };
+        char GetPrevChar ( ) {
+                return prevChar;
+        };
+        input GetInput ( ) {
+                return xy;
+        };
+        short GetState ( )
+        {
+                return state;
+        };
+        int GetTimer ( )
+        {
+                return timer;
+        };
 
-        private:
-                short state;
-                int timer;
+private:
+        short state;
+        int timer;
 
-                bool activeTimer;
+        bool activeTimer;
 
-                input xy;
+        input xy;
 
-                char prevChar;
+        char prevChar;
 
-                void Clean();
+        void Clean ( );
 };
 #endif
